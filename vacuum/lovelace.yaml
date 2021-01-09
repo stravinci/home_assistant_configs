@@ -1,0 +1,222 @@
+type: 'custom:vertical-stack-in-card'
+cards:
+  - type: picture-elements
+    image: /local/img/vacuum-top.png
+    elements:
+      - icon: 'mdi:fan'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 20%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.vacuum_tryb_odkurzania
+        type: icon
+      - icon: 'mdi:play'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 30%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: vacuum.start
+          service_data:
+            entity_id: vacuum.zosia
+        type: icon
+      - icon: 'mdi:pause'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 40%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: vacuum.pause
+          service_data:
+            entity_id: vacuum.zosia
+        type: icon
+      - icon: 'mdi:stop'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 50%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: vacuum.stop
+          service_data:
+            entity_id: vacuum.zosia
+        type: icon
+      - icon: 'mdi:home'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 60%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: vacuum.return_to_base
+          service_data:
+            entity_id: vacuum.zosia
+        type: icon
+      - icon: 'mdi:bell-ring'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 70%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: vacuum.locate
+          service_data:
+            entity_id: vacuum.zosia
+        type: icon
+      - icon: 'mdi:water'
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          left: 80%
+          top: 92%
+        tap_action:
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.vacuum_ilosc_wody
+        type: icon
+      - entity: sensor.vacuum_cleanmode
+        prefix: 'Tryb: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-left-style: solid
+          font-size: 90%
+          font-weight: bold
+          left: 1%
+          pointer-events: none
+          top: 15%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_fan_speed
+        prefix: 'Prędkość: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-left-style: solid
+          font-size: 90%
+          font-weight: bold
+          left: 1%
+          pointer-events: none
+          top: 25%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_dustbox
+        prefix: 'Pojemnik: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-left-style: solid
+          font-size: 90%
+          font-weight: bold
+          left: 1%
+          pointer-events: none
+          top: 35%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_mop
+        prefix: 'Mop: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-right-style: solid
+          font-size: 90%
+          font-weight: bold
+          right: 1%
+          pointer-events: none
+          top: 15%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_battery
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-right-style: solid
+          font-size: 90%
+          font-weight: bold
+          pointer-events: none
+          right: 1%
+          top: 25%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_watergrade
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          border-right-style: solid
+          font-size: 90%
+          font-weight: bold
+          pointer-events: none
+          right: 1%
+          top: 35%
+          transform: none
+        type: state-label
+      - entity: sensor.vacuum_cleaned_area
+        prefix: 'Obszar: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          font-size: 110%
+          font-weight: bold
+          left: 15%
+          pointer-events: none
+          top: 60%
+        type: state-label
+      - entity: sensor.vacuum_cleaning_time
+        prefix: 'Czas: '
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          font-size: 110%
+          font-weight: bold
+          pointer-events: none
+          right: '-10%'
+          top: 60%
+        suffix: ' min'
+        type: state-label
+      - entity: vacuum.zosia
+        style:
+          color: white
+          text-shadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+          font-size: 150%
+          font-weight: bold
+          left: 50%
+          top: 8%
+        tap_action:
+          action: more-info
+        type: state-label
+  - type: entities
+    image: /local/img/vacuum-top.png
+    style: |
+      ha-card {
+         background-image: url("/local/img/vacuum-bottom3.jpg");
+        }
+    entities:
+      - entity: input_select.vacuum_room
+        image: /local/img/vacuum-icon-room1.png
+        style:
+          ha-paper-dropdown-menu:
+            $:
+              paper-input:
+                $:
+                  paper-input-container: |
+                    label {
+                       font-size: 15px;
+                       color: white;
+                     }
+                    iron-input {
+                       font-size: 16px;
+                       color: #e5e5e5;
+                     }

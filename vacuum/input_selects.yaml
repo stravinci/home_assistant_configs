@@ -1,0 +1,9 @@
+vacuum_room:
+  name: Które pomieszczenie odkurzyć?
+  options:
+    - Wybierz pomieszczenie
+    - Kuchnia
+    - Salon
+    - Korytarz
+    - Jadalnia
+    - Łazienka

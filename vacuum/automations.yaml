@@ -1,0 +1,49 @@
+- alias: Vacuum - Cleaning Rooms
+  id: vacuum_cleaning_rooms
+  trigger:
+  - platform: state
+    entity_id: input_select.vacuum_room
+    from: Wybierz pomieszczenie
+  action:
+  - service: script.turn_on
+    data_template:
+      entity_id: "{% if is_state(\"input_select.vacuum_room\", \"Jadalnia\") %}\n\
+        \  script.vacuum_room_jadalnia\n{% elif is_state(\"input_select.vacuum_room\"\
+        , \"Salon\") %}\n  script.vacuum_room_salon\n{% elif is_state(\"input_select.vacuum_room\"\
+        , \"Łazienka\") %}\n  script.vacuum_room_lazienka\n{% elif is_state(\"input_select.vacuum_room\"\
+        , \"Wiatrołap\") %}\n  script.vacuum_room_wiatrolap\n{% elif is_state(\"input_select.vacuum_room\"\
+        , \"Kuchnia\") %}\n  script.vacuum_room_kuchnia\n{% else %} {% endif %}\n"
+  - service: input_select.select_option
+    entity_id: input_select.vacuum_room
+    data_template:
+      option: Wybierz pomieszczenie
+- alias: Vacuum - Ilosc wody
+  id: vacuum_ilosc_wody
+  trigger:
+  - entity_id: vacuum.zosia
+    platform: state
+  action:
+  - service_template: "{% if states.vacuum.zosia.attributes.water_grade == 11  %}\n\
+      \  script.vacuum_water_grade_medium\n{% elif states.vacuum.zosia.attributes.water_grade\
+      \ == 12  %}\n  script.vacuum_water_grade_high\n{% elif states.vacuum.zosia.attributes.water_grade\
+      \ == 13  %}\n  script.vacuum_water_grade_low\n{% else %} {% endif %}\n"
+  - data: {}
+    entity_id: automation.vacuum_ilosc_wody
+    service: automation.turn_off
+  initial_state: false
+- alias: Vacuum - Tryb odkurzania
+  id: vacuum_tryb_odkurzania
+  trigger:
+  - entity_id: vacuum.zosia
+    platform: state
+  action:
+  - service_template: "{% if states.vacuum.zosia.attributes.suction_grade == 0  %}\n\
+      \  script.vacuum_set_standard\n{% elif states.vacuum.zosia.attributes.suction_grade\
+      \ == 1  %}\n  script.vacuum_set_medium\n{% elif states.vacuum.zosia.attributes.suction_grade\
+      \ == 2  %}\n  script.vacuum_set_turbo\n{% elif states.vacuum.zosia.attributes.suction_grade\
+      \ == 3  %}\n  script.vacuum_set_silent\n{% else %}\nscript.vacuum_set_silent\n\
+      {% endif %}\n"
+  - data: {}
+    entity_id: automation.vacuum_tryb_odkurzania
+    service: automation.turn_off
+  initial_state: false
